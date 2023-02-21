@@ -1,0 +1,26 @@
+diff --git a/node_modules/ssb-about-self/index.js b/node_modules/ssb-about-self/index.js
+index 1ae869a..4d2864b 100644
+--- a/node_modules/ssb-about-self/index.js
++++ b/node_modules/ssb-about-self/index.js
+@@ -37,7 +37,7 @@ module.exports = {
+           pullAsync((cb) => {
+             get(feedId, cb)
+           }),
+-          pull.filter((out) => out.name || out.image || out.description)
++          pull.filter((out) => out.name || out.image || out.description || out.avatar)
+         ),
+ 
+         // Then deliver live field values
+diff --git a/node_modules/ssb-about-self/plugin.js b/node_modules/ssb-about-self/plugin.js
+index f49f138..452e0ab 100644
+--- a/node_modules/ssb-about-self/plugin.js
++++ b/node_modules/ssb-about-self/plugin.js
+@@ -82,6 +82,8 @@ module.exports = class AboutSelf extends Plugin {
+ 
+     if (isString(content.description)) profile.description = content.description
+ 
++    if (isString(content.avatar)) profile.avatar = content.avatar
++
+     if (content.image && isString(content.image.link))
+       profile.image = content.image.link
+     else if (isString(content.image)) profile.image = content.image

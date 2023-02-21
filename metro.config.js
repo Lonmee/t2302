@@ -6,6 +6,15 @@
  */
 
 module.exports = {
+  resolver: {
+    blockList: [
+      /\/tools\/.*/,
+      /\/nodejs-src\/.*/,
+      /\/nodejs-assets\/.*/,
+      /\/android\/.*/,
+      /\/ios\/.*/,
+    ],
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
