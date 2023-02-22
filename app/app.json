@@ -1,6 +1,7 @@
 {
   "name": "t2302",
   "displayName": "t2302",
+  "clientName": "ssb_client",
   "version": "beta",
   "build": "yy-mm-dd"
 }
