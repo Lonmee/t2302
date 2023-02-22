@@ -14,8 +14,8 @@ function onFailure() {
 declare -a archs=(
   "armeabi-v7a;arm"
   "arm64-v8a;arm64"
-#  "x86;x86"
-#  "x86_64;x64"
+  # "x86;x86"
+  # "x86_64;x64"
 )
 
 cd android
