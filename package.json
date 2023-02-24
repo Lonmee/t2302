@@ -31,7 +31,7 @@
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/native-stack": "^6.9.10",
     "@reduxjs/toolkit": "^1.9.2",
-    "nodejs-mobile-react-native": "^16.17.4",
+    "nodejs-mobile-react-native": "^16.17.5",
     "react": "18.2.0",
     "react-native": "0.71.3",
     "react-native-i18n": "^2.0.15",
