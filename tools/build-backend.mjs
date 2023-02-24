@@ -50,7 +50,7 @@ async function runAndReport(label, task) {
   if (targetPlatform === "ios") {
     await runAndReport(
       "Install backend node modules",
-      exec("~/.nvm/versions/node/v16.17.0/bin/npm install --omit=optional --ignore-scripts", {
+      exec("~/.nvm/versions/node/v16.17.1/bin/npm install --omit=optional --ignore-scripts", {
         cwd: "./nodejs-assets/nodejs-project",
         env: {
           PLATFORM_NAME: "iphoneos",
@@ -62,7 +62,7 @@ async function runAndReport(label, task) {
   } else {
     await runAndReport(
       "Install backend node modules",
-      exec("~/.nvm/versions/node/v16.17.0/bin/npm install --omit=optional --ignore-scripts", {
+      exec("~/.nvm/versions/node/v16.17.1/bin/npm install --omit=optional --ignore-scripts", {
         env: {
           DONT_COMPILE: '1',
           ...process.env,

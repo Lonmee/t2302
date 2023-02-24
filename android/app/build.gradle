@@ -108,6 +108,10 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        // for nodejs-mobile tasks
+        ndk {
+            abiFilters (*reactNativeArchitectures())
+        }
     }
 
     splits {
