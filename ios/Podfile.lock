@@ -77,7 +77,7 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.3)
   - hermes-engine/Pre-built (0.71.3)
   - libevent (2.1.12)
-  - nodejs-mobile-react-native (16.17.4):
+  - nodejs-mobile-react-native (16.17.5):
     - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -626,7 +626,7 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 38bfe887e456b33b697187570a08de33969f5db7
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  nodejs-mobile-react-native: 84833e06c4191850e0308e16b3789bea60049fb3
+  nodejs-mobile-react-native: 672e88834adb9e7fbd2b8cd23195769407a03355
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: bec48f07daf7bcdc2655a0cde84e07d24d2a9e2a
