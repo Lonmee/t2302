@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "apply-patches": "patch-package",
-    "postinstall": "patch-package",
     "npmi": "npm i",
     "test": "DEBUG=* node index.js --dev",
     "test-pull-stream": "node ./pull-stream-test/index.js"
