@@ -6,13 +6,12 @@
 const {dev, rnBridge} = require('./ssb/utils');
 // node initializing
 require('./node/initializer');
-
 // start ssb
 require('./ssb');
-const fs = require('fs');
 
 // client simulator
 if (dev) {
+  const fs = require('fs');
   rnBridge.channel.trigger(
     'identity',
     fs.existsSync(process.env.SSB_DIR) ? 'USE' : 'CREATE',
