@@ -40,7 +40,7 @@ export function callSSB(msg) {
             .use(threadsUtils)
             .use(starter)
             .call(null, (err, ssb) => {
-              err ? console.warn(err) : resolve(ssb);
+              err ? reject(err) : resolve(ssb);
             });
           break;
         case 'IDENTITY_CLEARED':

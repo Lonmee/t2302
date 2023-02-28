@@ -25,7 +25,8 @@ export default () => {
   return (
     <Navigator
       id={'tabs'}
-      initialRouteName={'Home'}
+      // initialRouteName={'Home'}
+      initialRouteName={'Profile'}
       screenOptions={({navigation, route}) => ({
         headerShown: false,
         tabBarShowLabel: false,

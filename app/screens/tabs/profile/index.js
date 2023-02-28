@@ -1,8 +1,10 @@
-import {SafeAreaView, SectionList} from 'react-native';
+import {Button, SafeAreaView, SectionList, Text} from 'react-native';
 import {useStyle} from '../../shared';
 import {version, build} from '../../../app.json';
 import Item from './item';
 import Header from './header';
+import {callSSB} from '../../../remote/ssb';
+import {IDENTITY_CREATE, IDENTITY_USE} from '../../../remote/ssb/request';
 
 /**
  * Created on 22 Nov 2022 by lonmee
@@ -44,6 +46,15 @@ export default () => {
         sections={data}
         renderSectionHeader={({section}) => <Header title={section.title} />}
         renderItem={Item}
+      />
+      <Text>SSB operations</Text>
+      <Button
+        title={'create'}
+        onPress={() => callSSB(IDENTITY_CREATE).then(ssb => (window.ssb = ssb))}
+      />
+      <Button
+        title={'use'}
+        onPress={() => callSSB(IDENTITY_USE).then(ssb => (window.ssb = ssb))}
       />
     </SafeAreaView>
   );
