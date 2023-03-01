@@ -5,6 +5,7 @@ import Item from './item';
 import Header from './header';
 import {callSSB} from '../../../remote/ssb';
 import {IDENTITY_CREATE, IDENTITY_USE} from '../../../remote/ssb/request';
+import pull from 'pull-stream';
 
 /**
  * Created on 22 Nov 2022 by lonmee
@@ -50,11 +51,27 @@ export default () => {
       <Text>SSB operations</Text>
       <Button
         title={'create'}
-        onPress={() => callSSB(IDENTITY_CREATE).then(ssb => (window.ssb = ssb))}
+        onPress={() =>
+          callSSB(IDENTITY_CREATE).then(
+            ssb => (
+              ssb.starter.start(),
+              (window.ssb = ssb),
+              pull(ssb.conn.stagedPeers(), pull.drain(console.log))
+            ),
+          )
+        }
       />
       <Button
         title={'use'}
-        onPress={() => callSSB(IDENTITY_USE).then(ssb => (window.ssb = ssb))}
+        onPress={() =>
+          callSSB(IDENTITY_USE).then(
+            ssb => (
+              ssb.starter.start(),
+              (window.ssb = ssb),
+              pull(ssb.conn.stagedPeers(), pull.drain(console.log))
+            ),
+          )
+        }
       />
     </SafeAreaView>
   );

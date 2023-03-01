@@ -12,6 +12,7 @@
     "~~~~~~~~~~~~~~~~~~~~~~~~~ modules ~~~~~~~~~~~~~~~~~~~~~~~~~": "",
     "npmi": "npm install",
     "pod": "npx pod-install",
+    "postinstall": "patch-package",
     "~~~~~~~~~~~~~~~~~~~~~~~~~ deploy & release ~~~~~~~~~~~~~~~~~~~~~~~~~": "",
     "android": "react-native run-android",
     "build-android-release": "cd android && ./gradlew assembleRelease && cd ..",

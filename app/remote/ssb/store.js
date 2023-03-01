@@ -15,6 +15,18 @@ function useInfo() {
       Appearance.getColorScheme() === 'dark' ? 'light-content' : 'dark-content',
   );
 }
+
+function useStagePeers() {
+  return useSyncExternalStore(
+    callback => {
+      const appearanceSubscription = Appearance.addChangeListener(callback);
+      return () => appearanceSubscription.remove();
+    },
+    () =>
+      Appearance.getColorScheme() === 'dark' ? 'light-content' : 'dark-content',
+  );
+}
+
 function useFeeds() {
   return useSyncExternalStore(
     callback => {
