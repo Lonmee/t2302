@@ -4,5 +4,7 @@
  */
 process.env.DEBUG = '*';
 process.argv.push('--dev');
+// restore switcher
+// process.argv.push('--res');
 require('../index');
 console.log("now 'ssb(global.ssb)' available");

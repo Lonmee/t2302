@@ -4,5 +4,6 @@
  */
 
 const dev = process.argv.includes('--dev');
+const res = process.argv.includes('--res');
 const rnBridge = require(dev ? '../rn-bridge-proxy' : 'rn-bridge');
-module.exports = {dev, rnBridge};
+module.exports = {dev, res, rnBridge};
