@@ -31,7 +31,7 @@ if (dev) {
                         null,
                         e => e && console.error(e.message || e),
                     );
-                    pull(ssb.resyncUtils.progress(), pull.drain(v => console.log('progress: ', v)));
+                    pull(ssb.resyncUtils.progress(), pull.unique(), pull.drain(v => console.log('progress: ', v)));
                 })
             } else {
                 // normal
