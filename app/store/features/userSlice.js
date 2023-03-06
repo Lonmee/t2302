@@ -4,15 +4,15 @@
  */
 
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {callSSB} from '../../remote/ssb';
+import {callSSB, response} from '../../remote/ssb';
 
 export const fetchSsbId = createAsyncThunk(
   'user/fetchSsbId',
   async (mnemonic, thunkAPI) => {
-    const response = await callSSB(
+    const {msg, ssb} = await callSSB(
       mnemonic === undefined ? 'CREATE' : 'RESTORE: ' + mnemonic,
     );
-    return response.id;
+    return msg === response.IDENTITY_READY ? ssb : undefined;
   },
   {dispatchConditionRejection: true},
 );
@@ -40,6 +40,9 @@ const userSlice = createSlice({
     loading: 'idle',
   },
   reducers: {
+    resetId: (state, action) => {
+      state.id = userSlice.getInitialState().id;
+    },
     setPhase: (state, action) => {
       state.phase = action.payload;
     },
@@ -51,11 +54,11 @@ const userSlice = createSlice({
       })
       .addCase(fetchSsbId.fulfilled, (state, action) => {
         state.loading = 'idle';
-        state.id = action.payload;
+        state.id = action.payload.id;
       });
   },
 });
 
-export const {setPhase} = userSlice.actions;
+export const {resetId, setPhase} = userSlice.actions;
 
 export default userSlice.reducer;

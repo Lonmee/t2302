@@ -29,7 +29,8 @@ function logHandler(msg) {
 export function callSSB(msg) {
   return new Promise((resolve, reject) => {
     channel.post('identity', msg);
-    channel.addListener('identity', msg => {
+    const subscribe = channel.addListener('identity', msg => {
+      subscribe.remove();
       switch (msg) {
         case 'IDENTITY_READY':
           ssbClient(manifest)
@@ -40,11 +41,11 @@ export function callSSB(msg) {
             .use(threadsUtils)
             .use(starter)
             .call(null, (err, ssb) => {
-              err ? reject(err) : resolve(ssb);
+              err ? reject(err) : resolve({msg, ssb});
             });
           break;
         case 'IDENTITY_CLEARED':
-          resolve(msg);
+          resolve({msg});
           break;
         default:
           reject(msg);
@@ -52,3 +53,5 @@ export function callSSB(msg) {
     });
   });
 }
+
+export {request, response} from './events';

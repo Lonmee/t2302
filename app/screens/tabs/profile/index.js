@@ -1,13 +1,16 @@
-import {Button, SafeAreaView, SectionList, Text} from 'react-native';
+import {Button, SafeAreaView, SectionList} from 'react-native';
 import {useStyle} from '../../shared';
 import {build, version} from '../../../app.json';
 import Item from './item';
 import Header from './header';
-import {callSSB} from '../../../remote/ssb';
-import {IDENTITY_CREATE, IDENTITY_USE} from '../../../remote/ssb/request';
-import pull from 'pull-stream';
-import {useCallback, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {
+  callSSB,
+  request as ssbRequest,
+  response as ssbResponse,
+} from '../../../remote/ssb';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchSsbId, resetId} from '../../../store/features/userSlice';
 
 /**
  * Created on 22 Nov 2022 by lonmee
@@ -16,21 +19,17 @@ import {useSelector} from 'react-redux';
 
 export default () => {
   const {flex1, row} = useStyle();
+  const dispatch = useDispatch();
   const id = useSelector(state => state.user.id);
 
   useEffect(() => {
-    console.log('once', id);
-    id && startSSB();
-  }, []);
-
-  const startSSB = useCallback(req => {
-    callSSB(req || IDENTITY_USE).then(
-      ssb => (
-        ssb.starter.start(),
-        (window.ssb = ssb),
-        pull(ssb.conn.stagedPeers(), pull.drain(console.log))
-      ),
-    );
+    id &&
+      callSSB(ssbRequest.IDENTITY_USE)
+        .then(({msg, ssb}) => {
+          msg === ssbResponse.IDENTITY_READY &&
+            (ssb.starter.start(), (window.ssb = ssb));
+        })
+        .catch(console.warn);
   }, []);
 
   const data = [
@@ -52,11 +51,11 @@ export default () => {
     {
       title: 'Account Information',
       data: [
-        {label: 'Id', data: 'xxx'},
-        {label: 'Nick', data: 'Lonmee'},
+        {label: 'Id', data: id},
+        {label: 'Nick', data: ''},
         {
           label: 'Description',
-          data: 'Nothing',
+          data: '',
         },
       ],
     },
@@ -68,10 +67,34 @@ export default () => {
         renderSectionHeader={({section}) => <Header title={section.title} />}
         renderItem={Item}
       />
-      <Button
-        title={'create account'}
-        onPress={() => startSSB(IDENTITY_CREATE)}
-      />
+      {!id ? (
+        <Button
+          title={'create account'}
+          onPress={() =>
+            dispatch(fetchSsbId())
+              .unwrap()
+              .then(ssb => {
+                ssb && (ssb.starter.start(), (window.ssb = ssb));
+              })
+              .catch(console.warn)
+          }
+        />
+      ) : (
+        <Button
+          title={'delete account'}
+          onPress={() =>
+            callSSB(ssbRequest.IDENTITY_CLEAR)
+              .then(({msg}) => {
+                msg === ssbResponse.IDENTITY_CLEARED &&
+                  ((window.ssb = undefined), dispatch(resetId()));
+              })
+              .catch(console.warn)
+          }
+        />
+      )}
+      <Button title={'refresh'} onPress={() => {}} />
     </SafeAreaView>
   );
 };
+
+export * from 'events';
