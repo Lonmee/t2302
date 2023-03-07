@@ -8,7 +8,7 @@
     "build-backend-ios": "tools/build-backend.mjs --ios",
     "update-backend": "tools/update-backend.mjs",
     "update-backend-android": "tools/update-backend.mjs && react-native run-android",
-    "update-backend-ios": "tools/update-backend.mjs && react-native run-ios --verbose --device \"Lonmee’s iPhone\"",
+    "update-backend-ios": "tools/update-backend.mjs && react-native run-ios --verbose --device \"侯永亮’s iPhone\"",
     "~~~~~~~~~~~~~~~~~~~~~~~~~ modules ~~~~~~~~~~~~~~~~~~~~~~~~~": "",
     "npmi": "npm install",
     "pod": "npx pod-install",

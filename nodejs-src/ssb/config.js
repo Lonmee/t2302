@@ -41,7 +41,7 @@ module.exports = isNewIdentity => {
       autostart: false,
       firewall: {
         rejectBlocked: true,
-        rejectUnknown: false,
+        rejectUnknown: true,
       },
     },
     friends: {
@@ -57,9 +57,7 @@ module.exports = isNewIdentity => {
     },
     connections: {
       incoming: {
-        net: [
-          {scope: 'public', transform: 'shs', port: 8008},
-        ],
+        net: [{scope: 'public', transform: 'shs', port: 8008}],
         channel: [{scope: 'device', transform: 'noauth'}],
         bluetooth: [{scope: 'public', transform: 'shs'}],
         tunnel: [{scope: 'public', transform: 'shs'}],
