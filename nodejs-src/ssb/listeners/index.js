@@ -39,7 +39,7 @@ module.exports = ({channel}, start) => {
           return;
         }
     }
-    dev && (global.ssb = ssb);
+    dev && ((global.ssb = ssb), console.log("now working in dev mode and 'ssb(global.ssb)' available"));
     channel.post('identity', response || 'IDENTITY_READY');
   });
 };
