@@ -1,4 +1,5 @@
 /**
+/**
  * Created on 15 Jul 2022 by lonmee
  *
  */
@@ -8,7 +9,7 @@ const {dev, res, rnBridge} = require('./ssb/utils');
 require('./node/initializer');
 // start ssb
 require('./ssb');
-const {pull} = require("pull-stream");
+const {pull} = require('pull-stream');
 
 // client simulator
 if (dev) {
