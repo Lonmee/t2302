@@ -25,7 +25,7 @@ if (dev) {
                 // resync
                 ssb.conn.start().then(() => {
                     // join room
-                    // ssb.conn.remember('net:110.41.150.47:8008~shs:txCEJ1+BWW37gZKX7b2B8GcbrZm9bwDbeRV/VkZNVwg=', {type: 'room'}, console.log)
+                    ssb.conn.remember('net:110.41.150.47:8008~shs:txCEJ1+BWW37gZKX7b2B8GcbrZm9bwDbeRV/VkZNVwg=', {type: 'room'}, console.log)
                     ssb.ebt.request(
                         '@+LtEZKFCnrM1g3fDiFJIH4fTX9hmPkx3lihtzxLFFQQ=.ed25519',
                         true,
